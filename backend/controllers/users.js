@@ -62,6 +62,19 @@ const createUser = (req, res, next) => {
     });
 };
 
+const updateProfile = (req, res, next) => {
+  const { body } = req;
+  const id = req.user._id;
+  console.log('updateProfile on user controller');
+  findUserWithId(
+    req,
+    res,
+    User.findByIdAndUpdate(id, body, { new: true, runValidators: true }),
+    next,
+  );
+};
+
+
 const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
@@ -80,5 +93,5 @@ const login = (req, res, next) => {
 };
 
 module.exports = {
-  createUser, getCurrentUser, login,
+  createUser, getCurrentUser, login, updateProfile
 };
