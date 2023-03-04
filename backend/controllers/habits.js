@@ -95,7 +95,7 @@ const editHabit = (req, res, next) => {
     { new: true },
   )
     .orFail(() => {
-      throw new NotFound('Article is not found');
+      thrw new NotFound('Article is not found');
     })
     .then((Article) => res.status(200).send(Article))
     .catch((err) => {
