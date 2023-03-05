@@ -85,6 +85,44 @@ const editHabit = (req, res, next) => {
 
 }
 
+const changeHabitStatus = (req, res, next) => {
+  const {body} = req;
+  const {habitId} = req.params;
+  Habit.findById(habitId)
+  .orFail(() => {
+    throw new NotFound('Habit is not found');
+  })
+  .then((habit) => {
+    const daysPassed = habit.daysPassed;
+    let status;
+    switch (true) {
+      case (daysPassed < 7):
+        status = ' new ';
+        break;
+      case (daysPassed < 21):
+        status = ' feeling the water ';
+      break;
+      case (daysPassed < 40):
+        status = ' forming ';
+        break;
+
+        case (daysPassed < 66):
+          status = ' almost there ';
+          break; 
+          
+        default:
+          status = 'completed'  
+    }
+    habit.status = status;
+    Habit.findByIdAndUpdate(habitId, body, {new: true })
+    .then((habit) => res.status(200).send(habit))
+    .catch((err) => {
+      // console.log(err);
+      next(err);
+  })
+})
+}
+
 /* const updateLikes = (req, res, operator, next) => {
   const { articleId } = req.params;
   const { _id } = req.user;
@@ -109,5 +147,5 @@ const likeArticle = (req, res, next) => updateLikes(req, res, '$addToSet', next)
 const dislikeArticle = (req, res, next) => updateLikes(req, res, '$pull', next); */
 
 module.exports = {
-  newHabit, deleteHabit, getAllHabits, editHabit
+  newHabit, deleteHabit, getAllHabits, editHabit, changeHabitStatus
 };
