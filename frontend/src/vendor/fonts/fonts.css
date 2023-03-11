@@ -1,0 +1,5 @@
+@font-face {
+    font-family: 'Copperplate';
+    src: url('./copperplate/copperplate.woff') format('woff'),
+         url('./copperplate/copperplate.woff2') format('woff2');
+}

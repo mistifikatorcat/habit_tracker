@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import './signup.css';
 
 function Signup(/*{ handleSignup }*/) {
 //   const [email, setEmail] = React.useState("");
@@ -20,7 +21,7 @@ function Signup(/*{ handleSignup }*/) {
 //   };
 
   return (
-    <div className="signup">
+    <section className="signup">
       <h2 className="signup__title">Sign Up</h2>
       <form className="signup__form" /*onSubmit={handleSubmit}*/>
         <input
@@ -55,7 +56,7 @@ function Signup(/*{ handleSignup }*/) {
           </div>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 
