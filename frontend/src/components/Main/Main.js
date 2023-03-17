@@ -3,11 +3,11 @@ import Intro from "../Intro/Intro";
 import Signup from "../Signup/Signup";
 
 
-function Main({handleSignup}){
+function Main({handleSignup, onLoginClick, onClose}){
     return(
         <main className="main">
             <Intro />
-            <Signup handleSignup={handleSignup}/>
+            <Signup handleSignup={handleSignup} onLoginClick={onLoginClick} onClose={onClose}/>
         </main>
     )
 }

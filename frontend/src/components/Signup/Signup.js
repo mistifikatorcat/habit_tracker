@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './signup.css';
 
-function Signup({ handleSignup }) {
+function Signup({ handleSignup, onLoginClick, onClose }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -18,6 +18,11 @@ function Signup({ handleSignup }) {
 
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const handleLoginClick = () => {
+    onClose();
+    onLoginClick();
   };
 
   return (
@@ -49,7 +54,7 @@ function Signup({ handleSignup }) {
             </button>
             <p className="signup__footer-text">
               Already a member?{" "}
-              <Link to="/login" className="signup__link">
+              <Link onClick={handleLoginClick} className="signup__link">
                 Log in here!
               </Link>
             </p>

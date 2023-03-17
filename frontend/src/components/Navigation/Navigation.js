@@ -17,7 +17,7 @@ function Navigation({onLoginClick, onClose, onRegisterClick}){
     return(
         <nav className="navi">
             <div className="navi__links">
-                <button to='/signin' className="navi__button navi__login" onClick={onLoginClick}>
+                <button className="navi__button navi__login" onClick={onLoginClick}>
                     Sign in
                 </button>
             </div>

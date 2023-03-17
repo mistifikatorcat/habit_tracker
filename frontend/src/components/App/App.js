@@ -141,7 +141,7 @@ function App() {
 		onClose={closeAllPopups}
 		onRegisterClick={handleRegisterClick}
 		/>
-        <Main handleSignup={handleRegister}/>
+        <Main handleSignup={handleRegister} onLoginClick={handleLoginClick} onClose={closeAllPopups}/>
 		<LoginPopup
 					isOpen={isLoginPopupOpen}
 					onClose={closeAllPopups}
