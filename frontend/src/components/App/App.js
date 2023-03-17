@@ -2,23 +2,36 @@ import React from 'react';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import LoginPopup from '../LoginPopup/LoginPopup';
+import RegisterPopup from '../RegisterPopup/RegisterPopup';
 
 import {userContext} from '../../contexts/userContext';
 // import './App.css';
 
 
 import * as auth from '../../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 function App() {
+		const history = useNavigate();
 
+
+	//auth and context 
   const [currentUser, setCurrentUser] = React.useState({});
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isTokenCheck, setIsTokenCheck] = React.useState(true);
   const [userData, setUserData] = React.useState({username: 'Foma Kiniaev'});
 
+  //popups
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
+  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
+  const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
 
+//errors
 
+	const [isServerError, setIsServerError] = React.useState(false);
+	const [isClientError, setIsClientError] = React.useState('');
 
   React.useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -102,11 +115,47 @@ function App() {
 		setIsLoginPopupOpen(true);
 	}
 
+
+
+	function closeAllPopups() {
+		setIsLoginPopupOpen(false);
+		setIsRegisterPopupOpen(false);
+		setIsInfoToolTipOpen(false);
+	}
+
+	function handleLoginClick() {
+		setIsLoginPopupOpen(true);
+		setIsClientError('');
+	}
+
+	function handleRegisterClick() {
+		setIsClientError('');
+		setIsRegisterPopupOpen(true);
+	}
+
   return (
     <userContext.Provider value={currentUser}>
       <div className="app">
-        <Header />
-        <Main />
+        <Header 
+		onLoginClick={handleLoginClick}
+		onClose={closeAllPopups}
+		onRegisterClick={handleRegisterClick}
+		/>
+        <Main handleSignup={handleRegister}/>
+		<LoginPopup
+					isOpen={isLoginPopupOpen}
+					onClose={closeAllPopups}
+					onRegisterClick={handleRegisterClick}
+					onLogin={handleLogin}
+					isClientError={isClientError}
+				/>
+				<RegisterPopup
+					isOpen={isRegisterPopupOpen}
+					onClose={closeAllPopups}
+					onLoginClick={handleLoginClick}
+					onRegister={handleRegister}
+					isClientError={isClientError}
+				/>
         <Footer />
       </div>
     </userContext.Provider>

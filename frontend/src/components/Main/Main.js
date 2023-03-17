@@ -3,11 +3,11 @@ import Intro from "../Intro/Intro";
 import Signup from "../Signup/Signup";
 
 
-function Main(){
+function Main({handleSignup}){
     return(
         <main className="main">
             <Intro />
-            <Signup />
+            <Signup handleSignup={handleSignup}/>
         </main>
     )
 }

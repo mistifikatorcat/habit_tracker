@@ -1,6 +1,6 @@
 import React from "react";
 import Popup from "../Popup/Popup";
-import "./registerpopup.css";
+// import "./registerpopup.css";
 
 // import { Link } from "react-router-dom";
 

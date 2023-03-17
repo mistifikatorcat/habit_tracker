@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 import './header.css'
 
-function Header (/*isLoggedIn, username, onLoginClick*/){
+function Header (isLoggedIn, username, onLoginClick, onClose, onRegisterClick){
 
     return(
         <header className='header'>
@@ -12,7 +12,10 @@ function Header (/*isLoggedIn, username, onLoginClick*/){
                 <div className='header__logo-wrapper'>
                     <img className='header__logo' alt="Habit Tracker" src={logo}/>
                 </div>
-                <Navigation />
+                <Navigation
+                onLoginClick={onLoginClick}
+                onClose={onClose}
+                onRegisterClick={onRegisterClick} />
             </div>
         </header>
     )

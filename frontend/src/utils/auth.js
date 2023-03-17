@@ -1,3 +1,5 @@
+let node_env = 'production';
+
 let BASE_URL =
 node_env === 'production'
 ? 'http://localhost:1337'
