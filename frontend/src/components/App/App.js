@@ -44,14 +44,14 @@ function App() {
           } else{
             localStorage.removeItem('jwt');
             setIsLoggedIn(false);
-            // setLoginPopup(true); // don't forget to open the login popup afterwards
+            setIsLoginPopupOpen(true); // don't forget to open the login popup afterwards
           }
         })
         .catch((err) => {
           console.log(err)
           localStorage.removeItem('jwt');
           setIsLoggedIn(false);
-          // setLoginPopup(true); // don't forget to open the login popup afterwards
+          setIsLoginPopupOpen(true); // don't forget to open the login popup afterwards
         })
         .finally(() => {
           setIsTokenCheck(false);
@@ -93,7 +93,7 @@ function App() {
 					localStorage.setItem('jwt', res.token);
 					//setToken(res.token);
 					history('/');
-					window.location.reload(true);
+					// window.location.reload(true);
 				}
 			})
 			.catch((err) => {

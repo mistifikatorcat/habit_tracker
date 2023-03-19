@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const Unauthorized = require('../errors/Unauthorized');
 
 const { JWT_SECRET = 'hamburger' } = process.env;
