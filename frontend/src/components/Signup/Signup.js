@@ -5,10 +5,11 @@ import './signup.css';
 function Signup({ handleSignup, onLoginClick, onClose }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [username, setUsername] = React.useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userData = { email, password };
+    const userData = { email, password, username };
     handleSignup(userData);
   };
 
@@ -20,6 +21,10 @@ function Signup({ handleSignup, onLoginClick, onClose }) {
     setPassword(e.target.value);
   };
 
+  const handleChangeUsername = (e) => {
+    setUsername(e.target.value);
+  }
+
   const handleLoginClick = () => {
     onClose();
     onLoginClick();
@@ -29,6 +34,16 @@ function Signup({ handleSignup, onLoginClick, onClose }) {
     <section className="signup">
       <h2 className="signup__title">Sign Up</h2>
       <form className="signup__form" onSubmit={handleSubmit}>
+        
+      <input
+          type="username"
+          name="username"
+          className="signup__input"
+          placeholder="Username"
+          value={username}
+          onChange={handleChangeUsername}
+        />
+
         <input
           type="email"
           name="email"

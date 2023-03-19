@@ -22,6 +22,7 @@ mongoose.connect(MONGODB_URI);
 const allowedOrigins = [
 
     'http://localhost:1337',
+    'http://localhost:3000'
   ];
 
 
