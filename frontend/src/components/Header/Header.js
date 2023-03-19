@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 import './header.css'
 
-function Header (isLoggedIn, username, onLoginClick, onClose, onRegisterClick){
+function Header ({isLoggedIn, username, onLoginClick, onClose, onRegisterClick}){
 
     return(
         <header className='header'>
