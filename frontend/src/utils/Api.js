@@ -8,6 +8,15 @@ export class Api{
         return res.ok ? res.json() : Promise.reject(`Something went wrong: ${res.status}`);
     }
 
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      }
+    }).then(this._respond);
+  }
+
     getHabits(token) {
         return fetch(`${this._baseUrl}/myhabits`, {
           headers: {

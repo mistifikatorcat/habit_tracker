@@ -10,6 +10,7 @@ import {userContext} from '../../contexts/userContext';
 
 
 import * as auth from '../../utils/auth';
+import api from '../../utils/Api';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -32,6 +33,24 @@ function App() {
 
 	const [isServerError, setIsServerError] = React.useState(false);
 	const [isClientError, setIsClientError] = React.useState('');
+
+	//getting user info
+
+	React.useEffect(() => {
+	  const token = localStorage.getItem('jwt');
+	  if (token) {
+	    api
+	      .getUserInfo(token)
+	      .then(res => {
+	        console.log('getting user info ', res);
+	        setCurrentUser(res);
+	      })
+	      .catch((err) => {
+	        console.log(err);
+	      });
+	  }
+	}, [isLoggedIn]);
+
 
   React.useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -93,7 +112,7 @@ function App() {
 					localStorage.setItem('jwt', res.token);
 					//setToken(res.token);
 					history('/');
-					// window.location.reload(true);
+					window.location.reload(true);
 				}
 			})
 			.catch((err) => {
@@ -136,10 +155,13 @@ function App() {
   return (
     <userContext.Provider value={currentUser}>
       <div className="app">
-        <Header 
+        <Header
+		username={userData.username} 
+		isLoggedIn={isLoggedIn}
 		onLoginClick={handleLoginClick}
 		onClose={closeAllPopups}
 		onRegisterClick={handleRegisterClick}
+		onLogout={signout}
 		/>
         <Main handleSignup={handleRegister} onLoginClick={handleLoginClick} onClose={closeAllPopups}/>
 		<LoginPopup

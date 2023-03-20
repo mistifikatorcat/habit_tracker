@@ -2,7 +2,7 @@ import React from "react";
 
 import './navigation.css';
 
-function Navigation({onLoginClick, onClose, onRegisterClick}){
+function Navigation({onLoginClick, username, isLoggedIn, onLogout, onClose, onRegisterClick}){
 
     // const handleLoginClick = () => {
     //     onClose();
@@ -17,9 +17,15 @@ function Navigation({onLoginClick, onClose, onRegisterClick}){
     return(
         <nav className="navi">
             <div className="navi__links">
-                <button className="navi__button navi__login" to='/signin' onClick={onLoginClick}>
+                {isLoggedIn ? (
+                    <button className=""navi__button navi__logout onClick={onLogout}>
+                        {username}
+                    </button>
+                ) : (
+                    <button className="navi__button navi__login" to='/signin' onClick={onLoginClick}>
                     Sign in
                 </button>
+                )}
             </div>
         </nav>
     )
