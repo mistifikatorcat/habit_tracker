@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './intro.css'
 
 
@@ -15,6 +16,7 @@ function Intro(){
                 <p className='intro__text' id='line6'>So, I've designed an app to keep track of my own habits, hoping it will help me to focus on my skills as a developer. </p>
                 <p className='intro__text' id='line7'>If you read this message, it means that I've succeeded in my goal. Hope, you will success in yours!</p>
             </div>
+            <NavLink to={'/dashboard'}>Test dash</NavLink>
         </section>
     )
 }

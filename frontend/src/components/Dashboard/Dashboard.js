@@ -3,7 +3,7 @@ import React from "react";
 import Grid from '../Grid/Grid';
 
 
-function Dashboard(){
+function Dashboard({username}){
 
     return(
         <section className="dashboard">

@@ -4,14 +4,15 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import LoginPopup from '../LoginPopup/LoginPopup';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
-
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Dashboard from '../Dashboard/Dashboard';
 import {userContext} from '../../contexts/userContext';
 // import './App.css';
 
 
 import * as auth from '../../utils/auth';
 import api from '../../utils/Api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Route, Routes, Navigate } from 'react-router-dom';
 
 
 function App() {
@@ -163,7 +164,27 @@ function App() {
 		onRegisterClick={handleRegisterClick}
 		onLogout={signout}
 		/>
-        <Main handleSignup={handleRegister} onLoginClick={handleLoginClick} onClose={closeAllPopups}/>
+		<Routes>
+			<Route
+			path='/dashboard'
+			element={
+				<ProtectedRoute isLoggedIn={isLoggedIn}>
+					<Dashboard
+					username={userData.username}
+					/>
+				</ProtectedRoute>
+			} />
+			<Route
+				path='/'
+				element={
+					<Main 
+					handleSignup={handleRegister}
+					onLoginClick={handleLoginClick}
+					onClose={closeAllPopups}/>
+				}
+				/>
+				<Route path='*' element={<Navigate to ='/' />} />
+		</Routes>
 		<LoginPopup
 					isOpen={isLoginPopupOpen}
 					onClose={closeAllPopups}
