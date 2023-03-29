@@ -30,6 +30,10 @@ function App() {
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
   const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
 
+  //cards
+  const [habits, setHabits] = React.useState([]);
+
+
 //errors
 
 	const [isServerError, setIsServerError] = React.useState(false);
@@ -171,6 +175,7 @@ function App() {
 				<ProtectedRoute isLoggedIn={isLoggedIn}>
 					<Dashboard
 					username={userData.username}
+					cardsArray={habits}
 					/>
 				</ProtectedRoute>
 			} />
@@ -180,7 +185,8 @@ function App() {
 					<Main 
 					handleSignup={handleRegister}
 					onLoginClick={handleLoginClick}
-					onClose={closeAllPopups}/>
+					onClose={closeAllPopups}
+					/>
 				}
 				/>
 				<Route path='*' element={<Navigate to ='/' />} />
