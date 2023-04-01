@@ -1,18 +1,19 @@
 import React from 'react';
 import Header from '../Header/Header';
-import Main from '../Main/Main';
+import WelcomeMsg from '../WelcomeMsg/WelcomeMsg';
 import Footer from '../Footer/Footer';
 import LoginPopup from '../LoginPopup/LoginPopup';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import Dashboard from '../Dashboard/Dashboard';
+import Main from '../Main/Main';
 import {userContext} from '../../contexts/userContext';
 // import './App.css';
 
 
 import * as auth from '../../utils/auth';
 import api from '../../utils/Api';
-import { useNavigate, Route, Routes, Navigate } from 'react-router-dom';
+import { useNavigate, Route, Routes, Navigate, Redirect } from 'react-router-dom';
+
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
 	      .getUserInfo(token)
 	      .then(res => {
 	        console.log('getting user info ', res);
+			console.log(isLoggedIn);
 	        setCurrentUser(res);
 	      })
 	      .catch((err) => {
@@ -116,7 +118,7 @@ function App() {
 					setCurrentUser(res.user);
 					localStorage.setItem('jwt', res.token);
 					//setToken(res.token);
-					history('/');
+					history('/dashboard');
 					window.location.reload(true);
 				}
 			})
@@ -169,28 +171,31 @@ function App() {
 		onLogout={signout}
 		/>
 		<Routes>
-			<Route
-			path='/dashboard'
-			element={
-				<ProtectedRoute isLoggedIn={isLoggedIn}>
-					<Dashboard
-					username={userData.username}
-					cardsArray={habits}
-					/>
-				</ProtectedRoute>
-			} />
-			<Route
-				path='/'
-				element={
-					<Main 
-					handleSignup={handleRegister}
-					onLoginClick={handleLoginClick}
-					onClose={closeAllPopups}
-					/>
-				}
-				/>
-				<Route path='*' element={<Navigate to ='/' />} />
-		</Routes>
+  <Route
+    path='/dashboard'
+    element={
+      <ProtectedRoute isLoggedIn={isLoggedIn}>
+        <Main
+          username={userData.username}
+          cardsArray={habits}
+        />
+      </ProtectedRoute>
+    }
+  />
+  <Route
+    path='/welcome'
+    element={
+      <WelcomeMsg 
+        handleSignup={handleRegister}
+        onLoginClick={handleLoginClick}
+		isLoggedIn={isLoggedIn}
+        onClose={closeAllPopups}
+      />
+    }
+  />
+  <Route path='*' element={isLoggedIn ? <Navigate to='/dashboard' /> : <Navigate to='/welcome' /> } />
+ 
+</Routes>
 		<LoginPopup
 					isOpen={isLoginPopupOpen}
 					onClose={closeAllPopups}

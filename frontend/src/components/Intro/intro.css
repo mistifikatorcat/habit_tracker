@@ -36,6 +36,14 @@
     font-family: 'copperplate';
 }
 
+.intro__link{
+  /* border-radius: 1px; */
+  padding-top: 75px;
+  font-family: 'copperplate';
+  text-decoration: none;
+  color:lime;
+}
+
 @keyframes intro-fade-in {
     from {
       opacity: 0;

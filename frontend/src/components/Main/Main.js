@@ -1,15 +1,22 @@
 import React from "react";
-import Intro from "../Intro/Intro";
-import Signup from "../Signup/Signup";
+
+import Grid from '../Grid/Grid';
 
 
-function Main({handleSignup, onLoginClick, onClose}){
+function Main({username, habits}){
+
     return(
-        <main className="main">
-            <Intro />
-            <Signup handleSignup={handleSignup} onLoginClick={onLoginClick} onClose={onClose}/>
+        <main className="dashboard">
+            <h2 className="dashboard__header">
+                Welcome back, {username}!
+            </h2>
+            <Grid 
+                habits={habits}
+            />
+            <button className="dashboard__button">Add a new habit</button>
         </main>
     )
 }
+
 
 export default Main;

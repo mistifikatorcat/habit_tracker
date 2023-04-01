@@ -1,9 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import './intro.css'
 
 
-function Intro(){
+function Intro({isLoggedIn, onLoginClick}){
+
+    const navigate = useNavigate();
+
+    function pushToDashboard(){
+        navigate('/dashboard')
+    }
     return(
         <section className='intro'>
             <h1 className='intro__title'>Hey, there!</h1>
@@ -16,7 +22,15 @@ function Intro(){
                 <p className='intro__text' id='line6'>So, I've designed an app to keep track of my own habits, hoping it will help me to focus on my skills as a developer. </p>
                 <p className='intro__text' id='line7'>If you read this message, it means that I've succeeded in my goal. Hope, you will success in yours!</p>
             </div>
-            <NavLink to={'/dashboard'}>Test dash</NavLink>
+            {isLoggedIn
+            ? (
+                <button className='intro__link' onClick={pushToDashboard}>To the Dashboard</button>
+            )
+            :(
+                <button className='intro__link' onClick={onLoginClick}>To the Dashboard</button>
+            )
+            }
+             {/* if not logged in open login form */}
         </section>
     )
 }
