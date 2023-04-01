@@ -69,7 +69,10 @@ export default function Popup({
               </button>
             </div>
           </form>
-          <div className="popup__redirect">
+          {name === 'add' ?
+          (""):
+          (
+            <div className="popup__redirect">
             or{" "}
             <NavLink
               className="popup__redirect-link"
@@ -80,6 +83,8 @@ export default function Popup({
               {title === "Sign In" ? " Sign Up" : " Sign In"}
             </NavLink>
           </div>
+          )}
+          
         </div>
       </div>
     </section>

@@ -13,6 +13,7 @@ import {userContext} from '../../contexts/userContext';
 import * as auth from '../../utils/auth';
 import api from '../../utils/Api';
 import { useNavigate, Route, Routes, Navigate, Redirect } from 'react-router-dom';
+import AddHabitPopup from '../AddHabitPopup/AddHabitPopup';
 
 
 
@@ -29,6 +30,7 @@ function App() {
   //popups
   const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
+  const [isHabitPopupOpen, setIsHabitPopupOpen] = React.useState(false);
   const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
 
   //cards
@@ -141,6 +143,9 @@ function App() {
 		setIsLoginPopupOpen(true);
 	}
 
+	function handleHabitSubmit(){
+
+	}
 
 
 	function closeAllPopups() {
@@ -151,6 +156,11 @@ function App() {
 
 	function handleLoginClick() {
 		setIsLoginPopupOpen(true);
+		setIsClientError('');
+	}
+
+	function handleHabitPopupClick(){
+		setIsHabitPopupOpen(true);
 		setIsClientError('');
 	}
 
@@ -178,6 +188,7 @@ function App() {
         <Main
           username={userData.username}
           cardsArray={habits}
+		  onHabitClick={handleHabitPopupClick}
         />
       </ProtectedRoute>
     }
@@ -209,6 +220,11 @@ function App() {
 					onLoginClick={handleLoginClick}
 					onRegister={handleRegister}
 					isClientError={isClientError}
+				/>
+				<AddHabitPopup 
+					isOpen={isHabitPopupOpen}
+					onClose={closeAllPopups}
+					onAddHabitSubmit={handleHabitSubmit}
 				/>
         <Footer />
       </div>
