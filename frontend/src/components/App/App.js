@@ -143,8 +143,15 @@ function App() {
 		setIsLoginPopupOpen(true);
 	}
 
-	function handleHabitSubmit(){
-
+	function handleHabitSubmit({title, description, keyword}){
+		api.createHabit({title, description, keyword})
+		.then((newHabit) => {
+			setHabits([newHabit, ...habits]);
+			closeAllPopups();
+		})
+		.catch((err) => {
+			console.log(err);
+		})
 	}
 
 

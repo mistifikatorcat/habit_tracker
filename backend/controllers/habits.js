@@ -17,12 +17,13 @@ const getAllHabits = (req, res, next) => {
 const newHabit = (req, res, next) => {
   // console.log('here');
   const {
-    keyword, title, text, date, source, link, image,
+    keyword, title, description, date,
   } = req.body;
   const id = req.user._id;
   Habit.create({
     title,
     description,
+    keyword,
     owner: id,
   })
     .then((habit) => {

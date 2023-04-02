@@ -26,14 +26,14 @@ export class Api{
         }).then(this._respond);
       }
     
-      createHabit({name, description}) {
+      createHabit({title, description, keyword}) {
         return fetch(`${this._baseUrl}/myhabits/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${localStorage.getItem("jwt")}`,
           },
-          body: JSON.stringify({name, description}),
+          body: JSON.stringify({title, description, keyword}),
         }).then(this._respond);
       }
 

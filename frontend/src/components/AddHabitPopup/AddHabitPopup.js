@@ -3,12 +3,12 @@ import Popup from "../Popup/Popup";
 
 export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
   const [title, setTitle] = React.useState("");
-  const [desc, setDesc] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [keyword, setKeyword] = React.useState("");
 
   React.useEffect(() => {
     setTitle("");
-    setDesc("");
+    setDescription("");
     setKeyword("");
   }, [isOpen]);
 
@@ -16,8 +16,8 @@ export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
     setTitle(e.target.value);
   };
 
-  const onDesc = (e) => {
-    setDesc(e.target.value);
+  const onDescription = (e) => {
+    setDescription(e.target.value);
   };
 
   const onKeyword = (e) => {
@@ -29,7 +29,7 @@ export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
 
   onAddHabitSubmit({
         title: title,
-        desc: desc,
+        description: description,
         keyword: keyword
     });
   }
@@ -37,7 +37,7 @@ export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
   return (
     <Popup
       name="add"
-      title="New Place"
+      title="New Habit"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
@@ -46,9 +46,9 @@ export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
         <input
           className="form__input"
           type="text"
-          name="name"
+          name="title"
           value={title}
-          id="name"
+          id="title"
           placeholder="Title"
           onChange={onTitle}
           required
@@ -59,14 +59,14 @@ export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
         <input
           className="form__input"
           type="text"
-          id="desc"
+          id="description"
           placeholder="Description"
-          name="desc"
-          value={desc}
-          onChange={onDesc}
+          name="description"
+          value={description}
+          onChange={onDescription}
           required
         />
-        <span className="form__input-error desc-error"></span>
+        <span className="form__input-error description-error"></span>
         <input
           className="form__input"
           type="text"
@@ -77,7 +77,7 @@ export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
           onChange={onKeyword}
           required
         />
-        <span className="form__input-error desc-error"></span>
+        <span className="form__input-error description-error"></span>
       </fieldset>
     </Popup>
   );
