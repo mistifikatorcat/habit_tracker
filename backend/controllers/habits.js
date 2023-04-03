@@ -10,6 +10,7 @@ const getAllHabits = (req, res, next) => {
       // console.log('getAllArticles on Articles controller');
       // console.log(Articles);
       res.status(200).send(habit);
+      console.log(habit);
     })
     .catch((err) => { next(err); });
 };
@@ -31,6 +32,7 @@ const newHabit = (req, res, next) => {
       // console.log('createArticle on Articles controller');
 
       res.status(201).send(habit);
+      console.log('success')
     })
     .catch((err) => {
       // console.log(err);

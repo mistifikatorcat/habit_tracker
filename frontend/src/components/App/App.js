@@ -60,6 +60,7 @@ function App() {
 	  }
 	}, [isLoggedIn]);
 
+	//getting token info
 
   React.useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -85,6 +86,22 @@ function App() {
           setIsTokenCheck(false);
         });
       }
+  }, []);
+
+  //getting card info
+
+  React.useEffect(() => {
+	const token = localStorage.getItem('jwt');
+	if (token){
+		api.getAllHabits(token)
+		.then((res) => {
+			console.log('checking existing cards', res);
+			setHabits(res || []);
+		})
+		.catch((err)=>{
+			console.log(err)
+		})
+	}
   }, []);
 
   function handleRegister({username, email, password}) {
@@ -147,6 +164,7 @@ function App() {
 		api.createHabit({title, description, keyword})
 		.then((newHabit) => {
 			setHabits([newHabit, ...habits]);
+			console.log('success')
 			closeAllPopups();
 		})
 		.catch((err) => {

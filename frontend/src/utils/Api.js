@@ -17,7 +17,7 @@ export class Api{
     }).then(this._respond);
   }
 
-    getHabits(token) {
+    getAllHabits(token) {
         return fetch(`${this._baseUrl}/myhabits`, {
           headers: {
             "Content-Type": "application/json",
