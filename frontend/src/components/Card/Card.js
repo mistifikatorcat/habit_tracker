@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card({habits, title, description, keyword, status, date, id}){
+function Card({habit, title, description, keyword, status, date, id}){
 
 
 
@@ -9,17 +9,17 @@ function Card({habits, title, description, keyword, status, date, id}){
 
     React.useEffect(() => {
         setCardRender({
-            title: habits.title,
-            description: habits.description,
-            status: habits.status,
-            keyword: habits.keyword,
-            date: habits.createdAt,
-            id: habits._id
+            title: habit.title,
+            description: habit.description,
+            status: habit.status,
+            keyword: habit.keyword,
+            date: habit.createdAt,
+            id: habit._id
         })
     }, [])
 
     const getDate = () => {
-			const habitDate = new Date(habits.publishedAt);
+			const habitDate = new Date(habit.publishedAt);
 
 			const months = [
 				'Jan',

@@ -2,25 +2,25 @@ import React from "react";
 
 import Card from "../Card/Card";
 
-function Grid({habits}){
+function Grid({cardsArray}){
 
 
     return(
         <section className="grid">
            <ul className="grid__habits">
-            {habits && habits.map((card) => {
+            {cardsArray && cardsArray.map((habit) => 
                 (
                     <Card 
-                        key={card._id}
-                        habit={card}
-                        title={card.title}
-                        description={card.description}
-                        keyword={card.keyword}
-                        status={card.status}
-                        date={card.date}
+                        key={habit._id}
+                        habit={habit}
+                        title={habit.title}
+                        description={habit.description}
+                        keyword={habit.keyword}
+                        status={habit.status}
+                        date={habit.date}
                     />
                 )
-            })}
+            )}
            </ul>
         </section>
     )

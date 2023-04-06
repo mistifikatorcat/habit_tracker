@@ -3,7 +3,7 @@ import React from "react";
 import Grid from '../Grid/Grid';
 
 
-function Main({username, habits, onHabitClick}){
+function Main({username, cardsArray, onHabitClick}){
 
     return(
         <main className="dashboard">
@@ -11,7 +11,7 @@ function Main({username, habits, onHabitClick}){
                 Welcome back, {username}!
             </h2>
             <Grid 
-                habits={habits}
+                cardsArray={cardsArray}
             />
             <button className="dashboard__button" onClick={onHabitClick}>Add a new habit</button>
         </main>
