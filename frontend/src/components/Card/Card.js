@@ -1,7 +1,7 @@
 import React from "react";
 import './card.css';
 
-function Card({habit, title, description, keyword, status, date, id}){
+function Card({habit, title, description, keyword, date, id}){
 
 
 
@@ -12,7 +12,6 @@ function Card({habit, title, description, keyword, status, date, id}){
         setCardRender({
             title: habit.title,
             description: habit.description,
-            status: habit.status,
             keyword: habit.keyword,
             date: habit.createdAt,
             id: habit._id
@@ -53,42 +52,57 @@ function Card({habit, title, description, keyword, status, date, id}){
 
     const changeHabitStatus = () => {
         let status;
+        let className;
     switch (true) {
       case (countDays() < 7):
         status = ' new ';
+        className = 'habit__status_first';
         break;
       case (countDays() < 21):
         status = ' feeling the water ';
+        className = 'habit__status_second';
+
       break;
       case (countDays() < 40):
         status = ' forming ';
+        className = 'habit__status_third';
         break;
 
         case (countDays() < 66):
           status = ' almost there ';
+        className = 'habit__status_fourth';
+
           break; 
           
         default:
           status = 'completed'  
+        className = 'habit__status_fifth';
     }
-    return status;
-    }      
+
+    return [status, className];
+    }
+    
+    const [status, className] = changeHabitStatus();
 
     return(
         <li className="grid__habit">
             <div className="habit">
                 <div className="habit__container">
-                    <h3 className="habit__title">{title}</h3>
-                    <button className="habit__edit"></button>
-                    <button className="habit__delete"></button>
-                    <p className="habit__test">{getDate()}</p>
+                    <div className="habit__header">
+                        <h3 className="habit__title">{title}</h3>
+                        <div className="habit__buttons">
+                            <button className="habit__edit"></button>
+                            <button className="habit__delete"></button>
+                        </div>
+                    </div>
+                    <p className="habit__date">{getDate()}</p>
                     <div className="habit__text">
-                        <p className="habit__test">{description}</p>    
-                        <p className="habit__test">{keyword}</p>
+                        <p className="habit__description">{description}</p>    
+                        <p className="habit__keyword">{keyword}</p>
                         <p className="habit__test">{`days passed ${countDays()}`}</p>
                     </div>
                     <div className="habit__footer">
-                        <p className="habit__test">{changeHabitStatus()}</p>
+                        <p className={`habit__status ${className}`}>{status}</p>
                     </div>
                 </div>
                

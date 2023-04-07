@@ -2,3 +2,23 @@
     width: 430px;
     height: 125px;
 }
+
+.habit__container{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.habit__header{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.habit__title{
+    margin: 0;
+}
