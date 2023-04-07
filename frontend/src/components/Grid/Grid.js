@@ -1,5 +1,5 @@
 import React from "react";
-
+import './grid.css';
 import Card from "../Card/Card";
 
 function Grid({cardsArray}){

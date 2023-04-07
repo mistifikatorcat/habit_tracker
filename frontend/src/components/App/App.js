@@ -97,6 +97,16 @@ function App() {
 		.then((res) => {
 			console.log('checking existing cards', res);
 			setHabits(res || []);
+			// if(res){
+			// 	api.changeHabitStatus(res)
+			// 		.then((res) => {
+			// 			console.log('status updated at ', res);
+			// 			setHabits(res || [])
+			// 		})
+			// 		.catch((err) => {
+			// 			console.log(err);
+			// 		})
+			// }
 		})
 		.catch((err)=>{
 			console.log(err)

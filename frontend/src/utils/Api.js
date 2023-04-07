@@ -47,6 +47,7 @@ export class Api{
               body: JSON.stringify({name: name, description: description})
         }).then(this._respond)
       }
+
     
       deleteHabit(id) {
         return fetch(`${this._baseUrl}/myhabits/${id}`, {

@@ -1,4 +1,5 @@
 import React from "react";
+import './card.css';
 
 function Card({habit, title, description, keyword, status, date, id}){
 
@@ -42,6 +43,37 @@ function Card({habit, title, description, keyword, status, date, id}){
 			return fullDate;
 	};
 
+    const countDays = () => {
+            const now = new Date();
+            const habitDate = new Date(habit.createdAt);
+            const diffTime = Math.abs(now - habitDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            return diffDays;
+          };
+
+    const changeHabitStatus = () => {
+        let status;
+    switch (true) {
+      case (countDays() < 7):
+        status = ' new ';
+        break;
+      case (countDays() < 21):
+        status = ' feeling the water ';
+      break;
+      case (countDays() < 40):
+        status = ' forming ';
+        break;
+
+        case (countDays() < 66):
+          status = ' almost there ';
+          break; 
+          
+        default:
+          status = 'completed'  
+    }
+    return status;
+    }      
+
     return(
         <li className="grid__habit">
             <div className="habit">
@@ -53,9 +85,10 @@ function Card({habit, title, description, keyword, status, date, id}){
                     <div className="habit__text">
                         <p className="habit__test">{description}</p>    
                         <p className="habit__test">{keyword}</p>
+                        <p className="habit__test">{`days passed ${countDays()}`}</p>
                     </div>
                     <div className="habit__footer">
-                        <p className="habit__test">{status}</p>
+                        <p className="habit__test">{changeHabitStatus()}</p>
                     </div>
                 </div>
                
