@@ -1,24 +1,122 @@
-.habit{
-    width: 430px;
-    height: 125px;
-}
 
-.habit__container{
+  
+  .habit {
     display: flex;
     flex-direction: column;
-    align-content: space-between;
-    justify-content: center;
-    align-items: stretch;
-}
-
-.habit__header{
+    align-items: center;
+    background-color: #161515;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    width: 350px;
+  }
+  
+  .habit__container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .habit__header {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
-}
-
-.habit__title{
+    margin-bottom: 10px;
+    width: 90%;
+    padding: 0 15px;
+  }
+  
+  .habit__title {
+    font-size: 20px;
     margin: 0;
-}
+  }
+  
+  .habit__buttons {
+    display: flex;
+  }
+  
+  .habit__buttons{
+    display: flex;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .habit__delete {
+    background: url(../../images/trash.svg) no-repeat center/cover;
+    width: 18px;
+    height: 16px;
+    border: none;
+  }
+  
+  .habit__edit {
+    background: url(../../images/edit_profile.svg) no-repeat center/cover;
+    width: 16px;
+    height: 16px;
+    border: none;
+  }
+
+  .habit__date {
+    font-size: 14px;
+    margin: 0;
+    text-align: end;
+    padding-right: 15px;
+  }
+  
+  .habit__text {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding-left: 15px;
+    gap: 15px;
+  }
+  
+  .habit__description {
+    margin: 0;
+  }
+  
+  .habit__keyword {
+    margin: 0;
+  }
+  
+  .habit__test {
+    margin: 0;
+  }
+  
+  .habit__footer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .habit__status {
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 15px;
+    text-transform: capitalize;
+  }
+  
+ .habit__status_first{
+    color: red;
+ }
+
+ .habit__status_second{
+    color: orange;
+ }
+
+ .habit__status_third{
+    color: yellow;
+ }
+
+ .habit__status_fourth{
+    color: yellowgreen;
+ }
+
+ .habit__status_fifth{
+    color: green;
+ }
+  

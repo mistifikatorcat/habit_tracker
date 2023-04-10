@@ -1,7 +1,7 @@
 import React from "react";
 import './card.css';
 
-function Card({habit, title, description, keyword, date, id}){
+function Card({habit, title, description, keyword,}){
 
 
 

@@ -1,0 +1,13 @@
+.dashboard{
+    padding-top: 60px;
+}
+
+.dashboard__header{
+    margin: 0;
+    padding-bottom: 60px;
+    padding-left: 25px;
+}
+
+.dashboard__button{
+    margin-left: 25px;
+}
