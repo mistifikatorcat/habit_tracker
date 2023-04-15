@@ -13,7 +13,7 @@ import {userContext} from '../../contexts/userContext';
 import * as auth from '../../utils/auth';
 import api from '../../utils/Api';
 import { useNavigate, Route, Routes, Navigate, Redirect } from 'react-router-dom';
-import AddHabitPopup from '../AddHabitPopup/AddHabitPopup';
+import AddEntityPopup from '../AddEntityPopup/AddEntityPopup';
 
 
 
@@ -30,7 +30,7 @@ function App() {
   //popups
   const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
-  const [isHabitPopupOpen, setIsHabitPopupOpen] = React.useState(false);
+  const [isEntityPopupOpen, setIsEntityPopupOpen] = React.useState(false);
   const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
 
   //cards
@@ -187,6 +187,7 @@ function App() {
 		setIsLoginPopupOpen(false);
 		setIsRegisterPopupOpen(false);
 		setIsInfoToolTipOpen(false);
+		setIsEntityPopupOpen(false);
 	}
 
 	function handleLoginClick() {
@@ -195,7 +196,7 @@ function App() {
 	}
 
 	function handleHabitPopupClick(){
-		setIsHabitPopupOpen(true);
+		setIsEntityPopupOpen(true);
 		setIsClientError('');
 	}
 
@@ -219,7 +220,8 @@ function App() {
   <Route
     path='/dashboard'
     element={
-      <ProtectedRoute isLoggedIn={isLoggedIn}>
+      <ProtectedRoute 
+	  isLoggedIn={isLoggedIn}>
         <Main
           username={userData.username}
           cardsArray={habits}
@@ -256,8 +258,8 @@ function App() {
 					onRegister={handleRegister}
 					isClientError={isClientError}
 				/>
-				<AddHabitPopup 
-					isOpen={isHabitPopupOpen}
+				<AddEntityPopup 
+					isOpen={isEntityPopupOpen}
 					onClose={closeAllPopups}
 					onAddHabitSubmit={handleHabitSubmit}
 				/>

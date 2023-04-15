@@ -18,7 +18,7 @@ function Navigation({onLoginClick, username, isLoggedIn, onLogout, onClose, onRe
         <nav className="navi">
             <div className="navi__links">
                 {isLoggedIn ? (
-                    <button className=""navi__button navi__logout onClick={onLogout}>
+                    <button className="navi__button navi__logout" onClick={onLogout}>
                         {username}
                     </button>
                 ) : (

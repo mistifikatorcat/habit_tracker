@@ -31,6 +31,8 @@
   .habit__title {
     font-size: 20px;
     margin: 0;
+    font-family: "Balthazar";
+
   }
   
   .habit__buttons {
@@ -63,6 +65,8 @@
     margin: 0;
     text-align: end;
     padding-right: 15px;
+    font-family: "Balthazar";
+
   }
   
   .habit__text {
@@ -73,18 +77,26 @@
     width: 100%;
     padding-left: 15px;
     gap: 15px;
+    font-family: "Balthazar";
+
   }
   
   .habit__description {
     margin: 0;
+    font-family: "Balthazar";
+
   }
   
   .habit__keyword {
     margin: 0;
+    font-family: "Balthazar";
+
   }
   
   .habit__test {
     margin: 0;
+    font-family: "Balthazar";
+
   }
   
   .habit__footer {
@@ -98,6 +110,8 @@
     margin: 0;
     padding: 5px 15px;
     text-transform: capitalize;
+    font-family: "Balthazar";
+
   }
   
  .habit__status_first{

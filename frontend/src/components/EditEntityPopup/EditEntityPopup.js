@@ -1,7 +1,8 @@
 import React from "react";
 import Popup from "../Popup/Popup";
+import './editentitypopup.css';
 
-export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
+export default function AddEntityPopup({isOpen, onClose, onEditHabitSubmit}) {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [keyword, setKeyword] = React.useState("");
@@ -36,8 +37,8 @@ export default function AddHabitPopup({isOpen, onClose, onAddHabitSubmit}) {
 
   return (
     <Popup
-      name="add"
-      title="New Habit"
+      name="edit"
+      title="Edit Habit"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

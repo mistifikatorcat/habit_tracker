@@ -3,3 +3,9 @@
     src: url('./copperplate/copperplate.woff') format('woff'),
          url('./copperplate/copperplate.woff2') format('woff2');
 }
+
+@font-face {
+    font-family: 'Balthazar';
+    src: url(./balthazar/Balthazar-Regular.woff) format('woff'),
+    url(./balthazar/Balthazar-Regular.woff2) format('woff2');
+}
