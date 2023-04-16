@@ -37,14 +37,14 @@ export class Api{
         }).then(this._respond);
       }
 
-      editHabit({name, description}) {
-        return fetch(`${this._baseUrl}/myhabits/`, {
+      editHabit({title, description, keyword}, id) {
+        return fetch(`${this._baseUrl}/myhabits/${id}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${localStorage.getItem("jwt")}`,
               },
-              body: JSON.stringify({name: name, description: description})
+              body: JSON.stringify({title: title, description: description, keyword: keyword})
         }).then(this._respond)
       }
 

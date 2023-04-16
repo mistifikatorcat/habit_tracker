@@ -3,7 +3,7 @@ import './main.css';
 import Grid from '../Grid/Grid';
 
 
-function Main({username, cardsArray, onHabitClick}){
+function Main({username, cardsArray, onHabitClick, onEditClick}){
 
     return(
         <main className="dashboard">
@@ -12,6 +12,7 @@ function Main({username, cardsArray, onHabitClick}){
             </h2>
             <Grid 
                 cardsArray={cardsArray}
+                onEditClick={onEditClick}
             />
             <button className="dashboard__button" onClick={onHabitClick}>Add a new habit</button>
         </main>

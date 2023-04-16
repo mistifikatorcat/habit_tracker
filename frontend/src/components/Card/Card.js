@@ -1,7 +1,7 @@
 import React from "react";
 import './card.css';
 
-function Card({habit, title, description, keyword,}){
+function Card({habit, title, description, keyword, id, onEditClick}){
 
 
 
@@ -91,7 +91,7 @@ function Card({habit, title, description, keyword,}){
                     <div className="habit__header">
                         <h3 className="habit__title">{title}</h3>
                         <div className="habit__buttons">
-                            <button className="habit__edit"></button>
+                            <button className="habit__edit" onClick={onEditClick}></button>
                             <button className="habit__delete"></button>
                         </div>
                     </div>
@@ -100,6 +100,7 @@ function Card({habit, title, description, keyword,}){
                         <p className="habit__description">{description}</p>    
                         <p className="habit__keyword">{keyword}</p>
                         <p className="habit__test">{`days passed ${countDays()}`}</p>
+                        <p className="habit__test">{id}</p>
                     </div>
                     <div className="habit__footer">
                         <p className={`habit__status ${className}`}>{status}</p>

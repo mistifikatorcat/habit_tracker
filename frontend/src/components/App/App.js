@@ -14,6 +14,7 @@ import * as auth from '../../utils/auth';
 import api from '../../utils/Api';
 import { useNavigate, Route, Routes, Navigate, Redirect } from 'react-router-dom';
 import AddEntityPopup from '../AddEntityPopup/AddEntityPopup';
+import EditEntityPopup from '../EditEntityPopup/EditEntityPopup';
 
 
 
@@ -30,11 +31,13 @@ function App() {
   //popups
   const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
-  const [isEntityPopupOpen, setIsEntityPopupOpen] = React.useState(false);
+  const [isAddEntityPopupOpen, setIsAddEntityPopupOpen] = React.useState(false);
+  const [isEditEntityPopupOpen, setIsEditEntityPopupOpen] = React.useState(false);
   const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
 
   //cards
   const [habits, setHabits] = React.useState([]);
+  const [entity, setEntity] = React.useState({});
 
 
 //errors
@@ -182,12 +185,29 @@ function App() {
 		})
 	}
 
+	function handleUpdateHabit({title, description, keyword}, id){
+		habits.map((editedCard) => {
+			id = editedCard._id;
+			console.log(id);
+		});
+		api.editHabit({title, description, keyword}, id)
+		.then((res) => {
+			console.log(res, ' was updated')
+			setEntity({...res});
+			closeAllPopups();
+		})
+		.catch((err) => {
+			console.log(err);
+			console.log('handleUpdateHabit did not work ')
+		})
+	}
+
 
 	function closeAllPopups() {
 		setIsLoginPopupOpen(false);
 		setIsRegisterPopupOpen(false);
 		setIsInfoToolTipOpen(false);
-		setIsEntityPopupOpen(false);
+		setIsAddEntityPopupOpen(false);
 	}
 
 	function handleLoginClick() {
@@ -195,8 +215,13 @@ function App() {
 		setIsClientError('');
 	}
 
-	function handleHabitPopupClick(){
-		setIsEntityPopupOpen(true);
+	function handleAddHabitPopupClick(){
+		setIsAddEntityPopupOpen(true);
+		setIsClientError('');
+	}
+
+	function handleEditHabitPopupClick(){
+		setIsEditEntityPopupOpen(true);
 		setIsClientError('');
 	}
 
@@ -225,7 +250,8 @@ function App() {
         <Main
           username={userData.username}
           cardsArray={habits}
-		  onHabitClick={handleHabitPopupClick}
+		  onHabitClick={handleAddHabitPopupClick}
+		  onEditClick={handleEditHabitPopupClick}
         />
       </ProtectedRoute>
     }
@@ -259,9 +285,15 @@ function App() {
 					isClientError={isClientError}
 				/>
 				<AddEntityPopup 
-					isOpen={isEntityPopupOpen}
+					isOpen={isAddEntityPopupOpen}
 					onClose={closeAllPopups}
 					onAddHabitSubmit={handleHabitSubmit}
+				/>
+				<EditEntityPopup 
+					entity = {entity}
+					isOpen={isEditEntityPopupOpen}
+					onClose={closeAllPopups}
+					onEditHabit={handleUpdateHabit}
 				/>
         <Footer />
       </div>

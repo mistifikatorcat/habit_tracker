@@ -2,7 +2,7 @@ import React from "react";
 import './grid.css';
 import Card from "../Card/Card";
 
-function Grid({cardsArray}){
+function Grid({cardsArray, onEditClick}){
 
 
     return(
@@ -12,12 +12,14 @@ function Grid({cardsArray}){
                 (
                     <Card 
                         key={habit._id}
+                        id={habit._id}
                         habit={habit}
                         title={habit.title}
                         description={habit.description}
                         keyword={habit.keyword}
                         status={habit.status}
                         date={habit.date}
+                        onEditClick={onEditClick}
                     />
                 )
             )}

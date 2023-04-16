@@ -2,16 +2,16 @@ import React from "react";
 import Popup from "../Popup/Popup";
 import './editentitypopup.css';
 
-export default function AddEntityPopup({isOpen, onClose, onEditHabitSubmit}) {
-  const [title, setTitle] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [keyword, setKeyword] = React.useState("");
+export default function EditEntityPopup({entity, isOpen, onClose, onEditHabit}) {
+  const [title, setTitle] = React.useState(entity.title || "");
+  const [description, setDescription] = React.useState(entity.description ||"");
+  const [keyword, setKeyword] = React.useState(entity.keyword ||"");
 
   React.useEffect(() => {
-    setTitle("");
-    setDescription("");
-    setKeyword("");
-  }, [isOpen]);
+    setTitle(entity.title || "");
+    setDescription(entity.description ||"");
+    setKeyword(entity.keyword ||"");
+  }, [entity, isOpen]);
 
   const onTitle = (e) => {
     setTitle(e.target.value);
@@ -28,7 +28,7 @@ export default function AddEntityPopup({isOpen, onClose, onEditHabitSubmit}) {
   function handleSubmit(e) {
     e.preventDefault();
 
-  onAddHabitSubmit({
+  onEditHabit({
         title: title,
         description: description,
         keyword: keyword
