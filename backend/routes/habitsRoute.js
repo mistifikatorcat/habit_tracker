@@ -5,7 +5,7 @@ const { getAllHabits, newHabit, editHabit, deleteHabit } = require('../controlle
 
 router.get('/', getAllHabits);
 router.post('/', validateHabit, newHabit);
-router.patch('/', validateObjectId, editHabit);
+router.patch('/:_id', validateObjectId, editHabit);
 router.delete('/:_id', validateObjectId, deleteHabit);
 
 module.exports = router;

@@ -185,16 +185,33 @@ function App() {
 		})
 	}
 
-	function handleUpdateHabit({title, description, keyword}, id){
+	function handleDeleteHabit(id){
+		habits.map((removedHabit) => {
+			id = removedHabit._id;
+			console.log('removed card with id: ', id)
+		});
+		api.deleteHabit(id)
+		.then((res) => {
+			setCurrentUser((currentUser) => ({
+				...currentUser, 
+				habits: habits.map((removedHabit) => removedHabit._id !== res.id),
+			}))
+		}) 
+		.catch((err) => console.log(err));
+	}
+
+	function handleUpdateHabit({title, description, keyword}, id){ //perhaps id should be put inside {}
 		habits.map((editedCard) => {
 			id = editedCard._id;
-			console.log(id);
+			console.log('edited card with id: ', id);
 		});
 		api.editHabit({title, description, keyword}, id)
 		.then((res) => {
 			console.log(res, ' was updated')
-			setEntity({...res});
+			setEntity({...res}); //also may be I should put setCurrentUser there
 			closeAllPopups();
+			// history('/dashboard');
+			// window.location.reload(true);
 		})
 		.catch((err) => {
 			console.log(err);
@@ -208,6 +225,7 @@ function App() {
 		setIsRegisterPopupOpen(false);
 		setIsInfoToolTipOpen(false);
 		setIsAddEntityPopupOpen(false);
+		setIsEditEntityPopupOpen(false);
 	}
 
 	function handleLoginClick() {
@@ -252,6 +270,7 @@ function App() {
           cardsArray={habits}
 		  onHabitClick={handleAddHabitPopupClick}
 		  onEditClick={handleEditHabitPopupClick}
+		  onDeleteClick={handleDeleteHabit}
         />
       </ProtectedRoute>
     }

@@ -18,7 +18,7 @@ const getAllHabits = (req, res, next) => {
 const newHabit = (req, res, next) => {
   // console.log('here');
   const {
-    keyword, title, description, date,
+    keyword, title, description
   } = req.body;
   const id = req.user._id;
   Habit.create({
@@ -47,8 +47,8 @@ const newHabit = (req, res, next) => {
 };
 
 const deleteHabit = (req, res, next) => {
-  const { habitId } = req.params; //_id
-  Habit.findById(habitId)
+  const { _id } = req.params; //_id
+  Habit.findById(_id)
     .orFail(() => {
       throw new NotFound('Habit is not found');
     })
@@ -56,7 +56,7 @@ const deleteHabit = (req, res, next) => {
       if (!habit.owner.equals(req.user._id)) {
         next(new Forbidden("You can't delete someone else's habit"));
       } else {
-        Habit.findByIdAndRemove(habitId)
+        Habit.findByIdAndRemove(_id)
           .then((habit) => res.status(200).send(habit));
       }
     })
@@ -68,8 +68,8 @@ const deleteHabit = (req, res, next) => {
 
 const editHabit = (req, res, next) => {
   const {body} = req;
-  const {habitId} = req.params;
-  Habit.findById(habitId)
+  const {_id} = req.params;
+  Habit.findById(_id)
     .orFail(() => {
       throw new NotFound('Habit is not found');
     })
@@ -77,7 +77,7 @@ const editHabit = (req, res, next) => {
       if (!habit.owner.equals(req.user._id)) {
         next(new Forbidden("You can't edit someone else's habit"));
       } else {
-        Habit.findByIdAndUpdate(habitId, body, {new: true, runValidators: true})
+        Habit.findByIdAndUpdate(_id, body, {new: true, runValidators: true})
           .then((habit) => res.status(200).send(habit));
       }
     })

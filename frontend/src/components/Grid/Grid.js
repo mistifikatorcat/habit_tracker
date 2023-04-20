@@ -2,7 +2,7 @@ import React from "react";
 import './grid.css';
 import Card from "../Card/Card";
 
-function Grid({cardsArray, onEditClick}){
+function Grid({cardsArray, onEditClick, onDeleteClick}){
 
 
     return(
@@ -20,6 +20,7 @@ function Grid({cardsArray, onEditClick}){
                         status={habit.status}
                         date={habit.date}
                         onEditClick={onEditClick}
+                        onDeleteClick={onDeleteClick}
                     />
                 )
             )}

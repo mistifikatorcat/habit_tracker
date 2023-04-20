@@ -1,7 +1,7 @@
 import React from "react";
 import './card.css';
 
-function Card({habit, title, description, keyword, id, onEditClick}){
+function Card({habit, title, description, keyword, id, onEditClick, onDeleteClick}){
 
 
 
@@ -92,7 +92,7 @@ function Card({habit, title, description, keyword, id, onEditClick}){
                         <h3 className="habit__title">{title}</h3>
                         <div className="habit__buttons">
                             <button className="habit__edit" onClick={onEditClick}></button>
-                            <button className="habit__delete"></button>
+                            <button className="habit__delete" onClick={onDeleteClick}></button>
                         </div>
                     </div>
                     <p className="habit__date">{getDate()}</p>
