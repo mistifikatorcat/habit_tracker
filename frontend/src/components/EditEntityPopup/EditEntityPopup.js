@@ -32,7 +32,7 @@ export default function EditEntityPopup({entity, isOpen, onClose, onEditHabit}) 
         title: title,
         description: description,
         keyword: keyword
-    });
+    }, entity._id);
   }
 
   return (

@@ -186,32 +186,32 @@ function App() {
 	}
 
 	function handleDeleteHabit(id){
-		habits.map((removedHabit) => {
-			id = removedHabit._id;
-			console.log('removed card with id: ', id)
-		});
+		console.log(id);
+		
 		api.deleteHabit(id)
 		.then((res) => {
-			setCurrentUser((currentUser) => ({
-				...currentUser, 
-				habits: habits.map((removedHabit) => removedHabit._id !== res.id),
-			}))
+			
+			console.log(res);
+			const updatedHabits = habits.filter((removedHabit) => {
+				return  removedHabit._id !== res._id;
+			})
+			setHabits(updatedHabits);
 		}) 
 		.catch((err) => console.log(err));
 	}
 
 	function handleUpdateHabit({title, description, keyword}, id){ //perhaps id should be put inside {}
-		habits.map((editedCard) => {
-			id = editedCard._id;
-			console.log('edited card with id: ', id);
-		});
+		console.log(id);
 		api.editHabit({title, description, keyword}, id)
-		.then((res) => {
-			console.log(res, ' was updated')
-			setEntity({...res}); //also may be I should put setCurrentUser there
+		.then((updatedHabit) => {
+			console.log(updatedHabit, ' was updated')
+			setHabits((habits) => habits.map((habit) => {
+				if (habit._id === updatedHabit._id){
+					return updatedHabit
+				}
+				return habit;
+			}))
 			closeAllPopups();
-			// history('/dashboard');
-			// window.location.reload(true);
 		})
 		.catch((err) => {
 			console.log(err);
@@ -312,7 +312,8 @@ function App() {
 					entity = {entity}
 					isOpen={isEditEntityPopupOpen}
 					onClose={closeAllPopups}
-					onEditHabit={handleUpdateHabit}
+					onEditHabit={()=>{{handleUpdateHabit(entity, entity._id)}}}
+					// onEditHabit={handleUpdateHabit}
 				/>
         <Footer />
       </div>

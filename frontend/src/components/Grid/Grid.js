@@ -20,7 +20,7 @@ function Grid({cardsArray, onEditClick, onDeleteClick}){
                         status={habit.status}
                         date={habit.date}
                         onEditClick={onEditClick}
-                        onDeleteClick={onDeleteClick}
+                        onDeleteClick={()=>{onDeleteClick(habit._id)} }
                     />
                 )
             )}

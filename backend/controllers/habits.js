@@ -86,8 +86,7 @@ const editHabit = (req, res, next) => {
       next(err);
     });
 
-}
-
+  }
 
 module.exports = {
   newHabit, deleteHabit, getAllHabits, editHabit
