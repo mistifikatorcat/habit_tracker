@@ -312,7 +312,7 @@ function App() {
 					entity = {entity}
 					isOpen={isEditEntityPopupOpen}
 					onClose={closeAllPopups}
-					onEditHabit={()=>{{handleUpdateHabit(entity, entity._id)}}}
+					onEditHabit={()=>{handleUpdateHabit(entity, entity._id)}}
 					// onEditHabit={handleUpdateHabit}
 				/>
         <Footer />

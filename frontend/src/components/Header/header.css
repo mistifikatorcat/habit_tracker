@@ -14,7 +14,7 @@
     max-width: 1200px;
     margin: 0 auto;
     height: 100%;
-    padding: 0 20px;
+    /* padding: 0 20px; */
   }
   
   .header__logo-wrapper {
@@ -30,9 +30,22 @@
     object-fit: contain;
   }
   
-  @media only screen and (max-width: 767px) {
-    .header__nav-wrapper {
-      justify-content: center;
+  @media screen and (max-width: 1020px) {
+    .header {
+      background-position: center center;
+      /* min-height: 200px; */
+      /* padding-bottom: 48px; */
     }
+  }  
+
+
+  @media (max-width: 468px){
+    
+    .header__nav-wrapper{
+      flex-direction: column;
+      row-gap: 25px;
+     
+    }
+
   }
   

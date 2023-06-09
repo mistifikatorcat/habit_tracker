@@ -74,7 +74,7 @@
     flex-direction: column;
     font-size: 16px;
     margin-bottom: 10px;
-    width: 100%;
+    max-width: 100%;
     padding-left: 15px;
     gap: 15px;
     font-family: "Balthazar";
@@ -134,3 +134,8 @@
     color: green;
  }
   
+ @media (max-width: 1024px) {
+    .habit{
+      width: 320px;
+    }
+ }
